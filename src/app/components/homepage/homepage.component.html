@@ -1,0 +1,64 @@
+<div class="wrapper">
+  <div class="row">
+    <div class="col-12 title">
+      <h2>Explore your favorite movies and series</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 search-bar">
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="searchValue"
+          (keydown)="detectSearchOnKeyDown($event)"
+          #input
+          [formControl]="searchFormControl"
+        />
+        <button
+          *ngIf="searchValue"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="searchValue = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="searchFormControl.hasError('minlength')"
+          >You must enter at least 3 characters.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-select [(value)]="searchType">
+          <mat-option value="">Movies and series</mat-option>
+          <mat-option value="movie">Movies</mat-option>
+          <mat-option value="series">Series</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-3 search-button">
+      <button class="button" mat-raised-button (click)="performSearch()">
+        Search
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 note" *ngIf="totalResults">
+      <p class="note-p">Displaying {{ totalResults }} results:</p>
+    </div>
+  </div>
+  <div class="cards-wrapper">
+    <div class="cards row">
+      <media-card
+        class="col-md-3 col-sm-6"
+        *ngFor="let result of results; let i = index"
+        [result]="result"
+        [i]="i"
+      ></media-card>
+    </div>
+  </div>
+  <div class="col-12" *ngIf="error"><b>Error: </b>{{ errorMsg }}</div>
+</div>

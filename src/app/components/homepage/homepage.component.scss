@@ -1,0 +1,32 @@
+.wrapper {
+  width: 80%;
+  margin: auto;
+}
+
+.button {
+  height: 56px;
+}
+
+.cards-wrapper {
+  height: calc(100vh - 260px);
+  position: absolute;
+  width: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.title,
+.search-bar,
+.note {
+  padding-left: 22px;
+}
+
+.search-button {
+  padding-right: 22px;
+  padding-left: 20px;
+}
+
+.note-p {
+  margin: 0 !important;
+  padding-bottom: 10px;
+}

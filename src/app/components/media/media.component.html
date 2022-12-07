@@ -1,0 +1,19 @@
+<div class="card" (click)="openDetailsComponent(result.imdbID)">
+  <mat-card id="target{{ i + 1 }}">
+    <mat-card-header>
+      <mat-card-title class="card-title">{{
+        displayTrimmedTitle(result.Title)
+      }}</mat-card-title>
+      <!-- <mat-card-title class="card-title">{{ result.Title }}</mat-card-title> -->
+    </mat-card-header>
+    <img
+      class="card-poster"
+      mat-card-image
+      src="{{ displayPoster(result.Poster) }}"
+    />
+    <mat-card-content class="card-content">
+      <p>{{ result.Year }}</p>
+      <p>{{ result.Type.toUpperCase() }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,94 @@
+<div class="wrapper">
+  <div class="row">
+    <div class="col-3">
+      <button mat-raised-button class="button" (click)="goBack()">
+        <i class="material-icons">arrow_back</i>
+        <span class="margin-left">Go back</span>
+      </button>
+    </div>
+  </div>
+  <div class="details-container">
+    <div *ngIf="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="content-wrapper" *ngIf="mediaDetails">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="title">{{ mediaDetails.Title }}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="poster">
+            <img src="{{ displayPoster(mediaDetails.Poster) }}" class="img" />
+          </div>
+        </div>
+        <div class="col-8 content">
+          <div class="row content-row">
+            <div class="col-12">
+              <b>
+                {{ mediaDetails.Type.toUpperCase() }}
+                {{ display(mediaDetails.Year) }}
+                {{ display(mediaDetails.Runtime) }}</b
+              >
+            </div>
+          </div>
+          <div class="row content-row">
+            <div class="col-12">
+              <mat-chip-listbox>
+                <mat-chip *ngFor="let genreItem of genreItems">
+                  {{ genreItem }}</mat-chip
+                >
+              </mat-chip-listbox>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="row content-row" *ngIf="hideElement">
+            <div class="col-12">
+              <p>{{ displayPlot(mediaDetails.Plot) }}</p>
+            </div>
+          </div>
+          <mat-divider *ngIf="hideElement"></mat-divider>
+          <div class="row content-row">
+            <div class="col-12" *ngIf="mediaDetails.Director != 'N/A'">
+              Directed by: {{ mediaDetails.Director }}
+            </div>
+          </div>
+          <div class="row content-row">
+            <div class="col-12">
+              {{ displayActors(mediaDetails.Actors) }}
+            </div>
+          </div>
+          <div class="row content-row">
+            <div class="col-12">
+              {{ displayCountry(mediaDetails.Country) }}
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="row content-row">
+            <div class="col-12">
+              <mat-chip-listbox>
+                <mat-chip *ngFor="let languageItem of languageItems">
+                  {{ languageItem }}
+                </mat-chip>
+              </mat-chip-listbox>
+            </div>
+          </div>
+          <mat-divider *ngIf="hideElement"></mat-divider>
+          <div class="row content-row" *ngIf="hideElement">
+            <div class="col-12 rating">
+              <div>IMDB RATING</div>
+              <div class="rating">
+                <mat-icon class="icon">star</mat-icon>
+                <div>
+                  <b>{{ displayRating(mediaDetails.imdbRating) }}</b
+                  >/10
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
